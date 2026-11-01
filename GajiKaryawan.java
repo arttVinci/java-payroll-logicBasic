@@ -95,7 +95,9 @@ public class GajiKaryawan {
         karyawan.total_penghasilan = karyawan.gaji_golongan + karyawan.gaji_lembur;
 
         // --- Format Rupiah ---
-        NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("in", "ID"));
+        Locale locale = Locale.of("id"); 
+
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(locale);
         formatter.setMaximumFractionDigits(0);
 
         // --- Output ---
