@@ -10,12 +10,11 @@ public class GajiKaryawan {
     int index_golongan = -1;
     Double total_penghasilan, gaji_lembur, gaji_golongan;
 
-    double[] listGajiPokok = {5000000, 6500000, 9500000};
-
-    double[] listPersenLembur = {0.30, 0.32, 0.34, 0.36, 0.38};
+    double[] gaji = {5000000, 6500000, 9500000};
+    int[] persenLembur = {30, 32, 34, 36, 38};
 
     void setGajiGolongan(String golonganInput) {
-        if(golonganInput.equalsIgnoreCase("A")) {
+        if (golonganInput.equalsIgnoreCase("A")) {
             index_golongan = 0;
         } else if (golonganInput.equalsIgnoreCase("B")) {
             index_golongan = 1;
@@ -26,32 +25,32 @@ public class GajiKaryawan {
         }
 
         if (index_golongan != -1) {
-            this.gaji_golongan = listGajiPokok[index_golongan];
+            this.gaji_golongan = gaji[index_golongan];
         } else {
             this.gaji_golongan = 0.0;
         }
     }
     
     double getGajiLembur(int jam_lembur, double gaji_pokok) {
-        if(jam_lembur <= 0) {
+        if (jam_lembur <= 0) {
             return 0;
         }
 
-        double persentase = 0;
+        int persentase = 0;
 
         if (jam_lembur == 1) {
-            persentase = listPersenLembur[0]; // 30%
+            persentase = persenLembur[0];
         } else if (jam_lembur == 2) {
-            persentase = listPersenLembur[1]; // 32%
+            persentase = persenLembur[1];
         } else if (jam_lembur == 3) {
-            persentase = listPersenLembur[2]; // 34%
+            persentase = persenLembur[2];
         } else if (jam_lembur == 4) {
-            persentase = listPersenLembur[3]; // 36%
+            persentase = persenLembur[3];
         } else if (jam_lembur >= 5) {
-            persentase = listPersenLembur[4]; // 38%
+            persentase = persenLembur[4];
         }
 
-        return persentase * gaji_pokok;
+        return (persentase / 100.0) * gaji_pokok;
     }
 
     public static void main(String[] args) {
@@ -81,26 +80,19 @@ public class GajiKaryawan {
                 } else {
                     break;
                 }
-            }
-            catch (InputMismatchException e) {
+            } catch (InputMismatchException e) {
                 System.out.println("Input salah! Harap masukkan ANGKA.");
                 scan.next();
             }
         }
 
-        // --- Proses Hitung ---
         karyawan.gaji_lembur = karyawan.getGajiLembur(karyawan.jam_lembur, karyawan.gaji_golongan);
-
-        // Operator Penjumlahan Total
         karyawan.total_penghasilan = karyawan.gaji_golongan + karyawan.gaji_lembur;
 
-        // --- Format Rupiah ---
-        Locale locale = Locale.of("id"); 
-
+        Locale locale = Locale.of("id", "ID"); 
         NumberFormat formatter = NumberFormat.getCurrencyInstance(locale);
         formatter.setMaximumFractionDigits(0);
 
-        // --- Output ---
         System.out.println("\n--- Rincian Gaji Karyawan ---");
         System.out.println("Golongan         : " + karyawan.golongan.toUpperCase());
         System.out.println("Gaji Pokok       : " + formatter.format(karyawan.gaji_golongan));

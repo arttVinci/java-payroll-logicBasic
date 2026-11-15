@@ -61,8 +61,8 @@ File: `GajiKaryawan.java`
   - `gaji_golongan`: Menyimpan nominal gaji pokok sesuai golongan.
   - `gaji_lembur`: Menyimpan hasil perhitungan nominal lembur.
   - `total_penghasilan`: Menyimpan total keseluruhan gaji pokok ditambah lembur.
-  - `listGajiPokok`: Array berisi daftar besaran gaji pokok `{5000000, 6500000, 9500000}`.
-  - `listPersenLembur`: Array berisi daftar persentase pengali lembur `{0.30, 0.32, 0.34, 0.36, 0.38}`.
+  - `gaji`: Array berisi daftar besaran gaji pokok `{5000000, 6500000, 9500000}`.
+  - `persenLembur`: Array berisi daftar persentase pengali lembur `{30, 32, 34, 36, 38}`.
 
 - Metode:
   - `void setGajiGolongan(String golonganInput)`:
